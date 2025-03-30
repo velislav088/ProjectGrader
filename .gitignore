@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+
+# FastAPI & Uvicorn
+*.log
+instance/
+*.db
+
+# IDE & OS-specific
+.vscode/
+.idea/
+.DS_Store
+
+# Virtual environment
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Ollama
+ollama/
+models/
