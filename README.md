@@ -22,32 +22,21 @@ This tool helps developers validate their ideas before committing to development
 ## How to run the project locally
 Follow these steps to set up Project Grader locally on your machine:
 
-1. Clone the repository
-git clone https://github.com/velislav088/ProjectGrader.git
-cd ProjectGrader
-2. Navigate to the Backend Folder
-cd backend
-3. Install Python Dependencies
-pip install -r requirements.txt
+1. Clone the repository - `git clone https://github.com/velislav088/ProjectGrader.git` `cd ProjectGrader`
+2. Navigate to the Backend Folder - `cd backend`
+3. Install Python Dependencies - `pip install -r requirements.txt` <br/>
 This installs all the necessary backend libraries, including FastAPI, Uvicorn, and Ollama for interacting with LLaMA 3.
-4. Install Ollama CLI (For LLaMA 3)
+4. Install Ollama CLI (For LLaMA 3) <br/>
 To interact with the LLaMA 3 model, you'll need the Ollama CLI.
-* macOS
-brew install ollama
-* Windows
-You can install Ollama via their website: [Ollama Downloads.](https://ollama.com/download)
-* Linux
-Follow the instructions on the [official Ollama website.](https://ollama.com/download)
-5. Run the Backend server
-uvicorn app.main:app --reload
-6. Set Up the Frontend (React)
-cd ../frontend
-7. Install Frontend Dependencies
-npm install
-8. Start the Frontend Server
-npm run dev
+* macOS - `brew install ollama`
+* Windows - You can install Ollama via their website: [Ollama Downloads.](https://ollama.com/download)
+* Linux - Follow the instructions on the [official Ollama website.](https://ollama.com/download)
+5. Run the Backend server - `uvicorn app.main:app --reload`
+6. Set Up the Frontend (React) - `cd ../frontend`
+7. Install Frontend Dependencies - `npm install`
+8. Start the Frontend Server - `npm run dev`
 
-The frontend should now be running at http://localhost:5173
+The frontend should now be running at http://localhost:5173.
 Now that both the frontend and backend are running, open your browser and go to http://localhost:5173 to interact with the frontend.
 The frontend will communicate with the backend at http://127.0.0.1:8000.
 
@@ -62,3 +51,5 @@ In the future I'm considering:
 * Improve the efficiency of the algorithms
 * Improve the UI/UX (right now it is in a very prototype phase)
 * Store the data in a database to compare it to other projects and improve the AI instructions
+  
+The current version is a prototype one and I'm looking forward to make this project better in the future and achieve the future plan.
