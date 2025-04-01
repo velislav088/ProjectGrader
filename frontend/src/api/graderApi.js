@@ -1,13 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
-
-export const gradeProject = async (projectData) => {
+const gradeProject = async (projectData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/grade`, projectData);
+        const response = await axios.post("http://127.0.0.1:8000/grade", projectData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        console.log("Server Response:", response.data);
         return response.data;
     } catch (error) {
-        console.error('Error grading project:', error);
-        return null;
+        console.error("Error grading project:", error.response ? error.response.data : error.message);
     }
 };
