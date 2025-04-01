@@ -8,16 +8,19 @@ def grade_project(project: ProjectIdea) -> GradingResponse:
     
     prompt = f"""
     Please evaluate the following project idea using the tier system (F-S) and provide constructive feedback:
-    - Provide pros, cons, improvement tips, and difficulty level.
+    - Provide detailed pros, cons, improvement tips, and difficulty level.
     - The difficulty level should reflect the experience needed to build the project.
     - Please grade the project based on feasibility, technological stack, potential scalability, and overall impact.
     
     Return your answer in the following **valid JSON format** with no additional text:
     {{
-        "tier": "F",  # Project grade (F-S)
-        "pros": ["list", "of", "pros"],  # Positive aspects of the project
-        "cons": ["list", "of", "cons"],  # Negative aspects or challenges
-        "improvement_tips": ["list", "of", "suggestions"],  # Tips for improvement
+        "overall_grade": "F",  # Project grade (F-S)
+        "usability": "F",  # Project grade (F-S)
+        "uniqueness": "F",  # Project grade (F-S)
+        "complexity": "F",  # Project grade (F-S)
+        "pros": ["list", "of", "pros"],  # Positive aspects of the project (3 or more)
+        "cons": ["list", "of", "cons"],  # Negative aspects or challenges (3 or more)
+        "improvement_tips": ["list", "of", "suggestions"],  # Tips for improvement (make them unique and explain how it will add to the given project)
         "difficulty": "string"  # Difficulty level (e.g., Beginner, Intermediate, Advanced)
     }}
 
@@ -41,7 +44,7 @@ def grade_project(project: ProjectIdea) -> GradingResponse:
             parsed_data = json.loads(json_string)
             
             # Ensure all necessary keys are present
-            required_keys = ['tier', 'pros', 'cons', 'improvement_tips', 'difficulty']
+            required_keys = ['overall_grade', 'usability', 'uniqueness', 'complexity', 'pros', 'cons', 'improvement_tips', 'difficulty']
             if all(key in parsed_data for key in required_keys):
                 return GradingResponse(**parsed_data)  # Return as Pydantic model
             else:
@@ -50,7 +53,10 @@ def grade_project(project: ProjectIdea) -> GradingResponse:
             print("Failed to decode JSON.")
 
     return GradingResponse(
-        tier="Error",
+        overall_grade="Error",
+        usability="Error",
+        uniqueness="Error",
+        complexity="Error",
         pros=[],
         cons=[],
         improvement_tips=["Failed to parse or validate AI response"],
