@@ -7,21 +7,31 @@ def grade_project(project: ProjectIdea) -> GradingResponse:
     """Calls LLaMA 3 to analyze the project idea and return structured feedback."""
     
     prompt = f"""
-    Please evaluate the following project idea using the tier system (F-S) and provide constructive feedback:
-    - Provide detailed pros, cons, improvement tips, and difficulty level.
-    - The difficulty level should reflect the experience needed to build the project.
-    - Please grade the project based on feasibility, technological stack, potential scalability, and overall impact.
-    
-    Return your answer in the following **valid JSON format** with no additional text:
+    Please evaluate the following project idea using the tier system (F-S) and provide structured feedback:
+    - Grade the project based on **feasibility, technological stack, scalability, innovation, and real-world impact**.
+    - Provide at **least 3 pros and 3 cons**, but include **more if applicable**.
+    - Improvement tips must be **detailed**, explaining how they enhance the project.
+    - Focus on **how this project can be unique** compared to existing solutions, highlighting its **distinctive features** or innovations.
+    - Compare this project to **existing solutions** in the healthcare/AI field, and explain whether it offers a **unique advantage** over these.
+
+    ### Grading Criteria:
+    - **S-Tier**: Highly innovative, feasible at scale, fills a market gap, strong use of cutting-edge technology.
+    - **A-Tier**: Very strong, feasible but may require refinement, competitive in existing markets.
+    - **B-Tier**: Good idea but **lacks uniqueness** or has **scalability concerns**.
+    - **C-Tier or Lower**: Major issues in feasibility, execution, or practical use.
+
+    Return your answer in **valid JSON format** with no extra text:
     {{
         "overall_grade": "F",  # Project grade (F-S)
-        "usability": "F",  # Project grade (F-S)
-        "uniqueness": "F",  # Project grade (F-S)
-        "complexity": "F",  # Project grade (F-S)
-        "pros": ["list", "of", "pros"],  # Positive aspects of the project (3 or more)
-        "cons": ["list", "of", "cons"],  # Negative aspects or challenges (3 or more)
-        "improvement_tips": ["list", "of", "suggestions"],  # Tips for improvement (make them unique and explain how it will add to the given project)
-        "difficulty": "string"  # Difficulty level (e.g., Beginner, Intermediate, Advanced)
+        "usability": "F",  
+        "uniqueness": "F",  
+        "complexity": "F",  
+        "pros": ["At least 3 positive aspects, can be more"],  
+        "cons": ["At least 3 negative aspects, can be more"],  
+        "improvement_tips": [
+            "Each tip must be **at least one sentence long**, explaining how it improves the project."
+        ],
+        "difficulty": "string"  
     }}
 
     **Title:** {project.title}
